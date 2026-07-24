@@ -1,0 +1,25 @@
+.slide{
+    width: max-content;
+    height: 260px;
+    display: flex;
+    gap: 20px;
+    animation:scroll-left 20s linear infinite;
+}
+
+.slide img{
+    height: 100%;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.images{
+    overflow:hidden ;
+    white-space:nowrap;
+}
+
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
