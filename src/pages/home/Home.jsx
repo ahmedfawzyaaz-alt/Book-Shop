@@ -49,7 +49,7 @@ export default function Home() {
       author: "Robert T. Kiyosanki",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et ultricies est. Aliquam in justo varius, sagittis neque ut, malesuada leo. Aliquam in justo varius, Aliquam in justo varius,",
-      price: "$30.00",
+      price: 30.00,
       review: "180 Review",
       rate: "4.2",
     },
@@ -59,7 +59,7 @@ export default function Home() {
       author: "Debbie Berne",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et ultricies est. Aliquam in justo varius, sagittis neque ut, malesuada leo. Aliquam in justo varius, Aliquam in justo varius,",
-      price: "$40.00",
+      price: 40.00,
       review: "210 Review",
       rate: "4.2",
     },

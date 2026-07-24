@@ -5,6 +5,7 @@ import { Authontication } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 
 export default function Recomanded({ recomandCard }) {
+  console.log(recomandCard)
   const { token, addCart } = useContext(Authontication);
 
   return (
@@ -43,7 +44,7 @@ export default function Recomanded({ recomandCard }) {
               <span className="text-[#22222286]">rate</span>:{" "}
               {recomandCard.rate}
             </small>
-            <h4>{recomandCard.price}</h4>
+            <h4>{recomandCard.price}$</h4>
           </div>
 
           {/* controls */}
