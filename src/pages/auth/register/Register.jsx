@@ -52,7 +52,7 @@ export default function Register() {
             <input
               type="text"
               className="form-control p-2  "
-              placeholder="UserName"
+              placeholder="First Name"
               ref={firstName}
             />
 
