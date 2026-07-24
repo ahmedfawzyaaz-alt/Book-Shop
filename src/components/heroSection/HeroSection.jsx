@@ -3,7 +3,7 @@ import { FaMicrophone, FaSearch } from "react-icons/fa";
 
 export default function HeroSection({ setSearch }) {
   return (
-    <div className="bg-[linear-gradient(to_right,#00000099,#00000099),url(./public/assets/book-Shop.png)] min-h-screen bg-cover bg-no-repeat flex justify-center items-center flex-col gap-5">
+    <div className="bg-[linear-gradient(to_right,#00000099,#00000099),url(/assets/book-Shop.png)] min-h-screen bg-cover bg-no-repeat flex justify-center items-center flex-col gap-5">
       <div className="flex justify-center items-center w-[90%] md:w-[70%] lg:w-[45%] rounded-full bg-[white] h-13 overflow-hidden">
         <input
           type="text"
