@@ -63,7 +63,9 @@ export default function Header() {
                       to={"/profile"}
                       className="flex gap-3 text-decoration-none text-black"
                     >
-                      <CgProfile className="text-2xl text-black my-3" />
+                      <div className=" flex items-center px-3 rounded-full bg-[#D9176C] text-white">
+                        {AuthUser?.email?.charAt(0).toUpperCase()}
+                      </div>
                       <div className="flex flex-col">
                         <small className="text-white">
                           {AuthUser?.first_name} {AuthUser?.last_name}
