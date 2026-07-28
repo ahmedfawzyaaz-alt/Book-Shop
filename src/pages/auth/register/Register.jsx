@@ -1,8 +1,11 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { Authontication } from "../../../context/AuthContext";
 import { useNavigate } from "react-router";
+import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 
 export default function Register() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const contextValue = useContext(Authontication);
   console.log(contextValue);
@@ -33,7 +36,7 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((data) => {
-        navigate("/login")
+        navigate("/login");
         console.log(data);
       });
   }
@@ -78,21 +81,41 @@ export default function Register() {
             <label htmlFor="" className="mx-1">
               Password
             </label>
-            <input
-              type="password"
-              className="form-control p-2 "
-              placeholder="Password"
-              ref={password}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control p-2 "
+                placeholder="Password"
+                ref={password}
+              />
+
+              <button
+                type="button"
+                className="absolute right-4 top-3 text-gray-600"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <IoIosEyeOff /> : <IoMdEye />}
+              </button>
+            </div>
             <label htmlFor="" className="mx-1">
               Confirm Password
             </label>
-            <input
-              type="password"
-              className="form-control p-2  "
-              placeholder="Confirm Password"
-              ref={confirmPassword}
-            />
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                className="form-control p-2  "
+                placeholder="Confirm Password"
+                ref={confirmPassword}
+              />
+
+              <button
+                className="absolute right-4 top-3 text-gray-600"
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <IoIosEyeOff /> : <IoMdEye />}
+              </button>
+            </div>
             <button className="bg-[#D9176C] p-2 rounded text-white">
               Sign Up
             </button>

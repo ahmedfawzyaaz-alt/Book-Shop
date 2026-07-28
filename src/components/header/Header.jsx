@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router";
 import { Authontication } from "../../context/AuthContext";
-import { CgProfile } from "react-icons/cg";
 import { FaCartArrowDown } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 
@@ -12,7 +11,7 @@ export default function Header() {
   let AuthUser = JSON.parse(localStorage.getItem("user"));
   console.log(AuthUser);
   return (
-    <header className="absolute w-full ">
+    <header className="absolute w-full">
       <Navbar expand="lg" className="bg-[#FFFFFF33]">
         <Container>
           <div className="flex items-center gap-2">
@@ -63,7 +62,7 @@ export default function Header() {
                       to={"/profile"}
                       className="flex gap-3 text-decoration-none text-black"
                     >
-                      <div className=" flex items-center px-3 rounded-full bg-[#D9176C] text-white">
+                      <div className=" flex items-center px-3  rounded-full bg-[#D9176C] text-white">
                         {AuthUser?.email?.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex flex-col">
