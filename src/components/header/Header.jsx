@@ -42,38 +42,44 @@ export default function Header() {
               {authValue.token ? (
                 <div className="flex items-center gap-4 flex-col md:flex-row">
                   <div className="flex items-center gap-2.5 md:gap-3">
-                    <span className="relative">
-                      <Link to={"/wishList"}>
-                        <CiHeart className="text-3xl text-black" />
-                      </Link>
-                      <p className="absolute m-0 -top-3 bg-[#D9176C] text-white px-2 -left-3 rounded-4xl">
-                        {authValue.wishList.length}
-                      </p>
-                    </span>
-                    <span className="relative">
-                      <Link to={"/cart"}>
-                        <FaCartArrowDown className="text-3xl text-black" />
-                      </Link>
-                      <p className="m-0 absolute -top-4 bg-[#D9176C] text-white px-2 -left-2 rounded-4xl">
-                        {authValue.cart.length}
-                      </p>
-                    </span>
-                    <Link
-                      to={"/profile"}
-                      className="flex gap-3 text-decoration-none text-black"
-                    >
-                      <div className=" flex items-center px-3  rounded-full bg-[#D9176C] text-white">
-                        {AuthUser?.email?.charAt(0).toUpperCase()}
+                     <div className="flex flex-col md:flex-row gap-3 items-center">
+                      <div className="flex justify-center gap-3 mt-3">
+                        <span className="relative">
+                          <Link to={"/wishList"}>
+                            <CiHeart className="text-3xl text-black" />
+                          </Link>
+                          <p className="absolute m-0 -top-3 bg-[#D9176C] text-white px-2 -left-2 rounded-4xl">
+                            {authValue.wishList.length}
+                          </p>
+                        </span>
+                        <span className="relative">
+                          <Link to={"/cart"}>
+                            <FaCartArrowDown className="text-3xl text-black" />
+                          </Link>
+                          <p className="m-0 absolute -top-4 bg-[#D9176C] text-white px-2 -left-2 rounded-4xl">
+                            {authValue.cart.length}
+                          </p>
+                        </span>
                       </div>
-                      <div className="flex flex-col">
-                        <small className="text-white">
-                          {AuthUser?.first_name} {AuthUser?.last_name}
-                        </small>
-                        <small className="text-[#FFFFFF80]">
-                          {AuthUser?.email}
-                        </small>
+                      <div>
+                        <Link
+                          to={"/profile"}
+                          className="flex gap-3 text-decoration-none text-black"
+                        >
+                          <div className=" flex items-center px-3  rounded-full bg-[#D9176C] text-white">
+                            {AuthUser?.first_name?.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="flex flex-col">
+                            <small className="text-white">
+                              {AuthUser?.first_name} {AuthUser?.last_name}
+                            </small>
+                            <small className="text-[#FFFFFF80]">
+                              {AuthUser?.email}
+                            </small>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
+                    </div>
                   </div>
 
                   <Link to={"/register"}>
