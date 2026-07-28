@@ -41,7 +41,7 @@ export default function Header() {
 
               {authValue.token ? (
                 <div className="flex items-center gap-4 flex-col md:flex-row">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2.5 md:gap-3">
                     <span className="relative">
                       <Link to={"/wishList"}>
                         <CiHeart className="text-3xl text-black" />
