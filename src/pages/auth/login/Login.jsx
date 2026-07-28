@@ -1,11 +1,13 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
 import { Authontication } from "../../../context/AuthContext";
 import { Bounce, toast } from "react-toastify";
+import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 
 export default function Login() {
+  const [showPassword, setShowPassword] = useState(false);
   const email = useRef();
   const password = useRef();
   const navigate = useNavigate();
@@ -74,12 +76,22 @@ export default function Login() {
             <label htmlFor="" className="px-1">
               Password
             </label>
-            <input
-              type="password"
-              className="border p-2 rounded-lg"
-              placeholder="Enter Password"
-              ref={password}
-            />
+            <div className="relative w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                className="border p-2 rounded-lg w-full"
+                placeholder="Enter Password"
+                ref={password}
+              />
+
+              <button
+                className="absolute top-3 right-4 text-gray-600"
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <IoIosEyeOff /> : <IoMdEye />}
+              </button>
+            </div>
           </div>
 
           <div className="flex justify-between">
