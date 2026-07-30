@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { Authontication } from "../../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,9 +16,28 @@ export default function Register() {
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
+  const [passwordd, setPassword] = useState("");
 
   function handleRegister(e) {
     e.preventDefault();
+
+    if (password.current.value.length < 8) {
+      setPassword("Password must be at least 8 characters...");
+      return;
+    }
+
+    if (password.current.value === confirmPassword.current.value) {
+      navigate("/login");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops!",
+        text: "Passwords do not match",
+        confirmButtonText: "Try Again",
+      });
+      return;
+    }
+
     let userObject = {
       first_name: firstName.current.value,
       last_name: lastName.current.value,
@@ -57,6 +77,7 @@ export default function Register() {
               className="form-control p-2  "
               placeholder="First Name"
               ref={firstName}
+              required
             />
 
             <label htmlFor="" className="mx-1">
@@ -67,6 +88,7 @@ export default function Register() {
               className="form-control p-2  "
               placeholder="Last Name"
               ref={lastName}
+              required
             />
 
             <label htmlFor="" className="mx-1">
@@ -77,6 +99,7 @@ export default function Register() {
               className="form-control p-2 "
               placeholder="Email"
               ref={email}
+              required
             />
             <label htmlFor="" className="mx-1">
               Password
@@ -87,7 +110,12 @@ export default function Register() {
                 className="form-control p-2 "
                 placeholder="Password"
                 ref={password}
+                required
               />
+
+              {passwordd ? (
+                <p className="mx-1 text-gray-500">{passwordd}</p>
+              ) : null}
 
               <button
                 type="button"

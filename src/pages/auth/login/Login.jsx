@@ -66,9 +66,10 @@ export default function Login() {
             </label>
             <input
               type="email"
-              className="border p-2 rounded-lg"
+              className="border p-2 rounded-lg outline-0"
               placeholder="Email"
               ref={email}
+              required
             />
           </div>
 
@@ -79,9 +80,10 @@ export default function Login() {
             <div className="relative w-full">
               <input
                 type={showPassword ? "text" : "password"}
-                className="border p-2 rounded-lg w-full"
+                className="border p-2 rounded-lg w-full outline-0"
                 placeholder="Enter Password"
                 ref={password}
+                required
               />
 
               <button
