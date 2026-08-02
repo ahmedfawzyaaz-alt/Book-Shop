@@ -5,17 +5,24 @@ import { getAllCategories } from "../../apis/getAllCategories";
 import { getAllBooks } from "../../apis/getAllBooks";
 import { useCategories } from "../../hooks/useCateroies";
 import { useBooks } from "../../hooks/useBooks";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { useOutletContext } from "react-router";
 
 export default function Shop() {
   const { allCategories, loading, error } = useCategories();
   const allCatregoriesAPIs = allCategories;
+
+  allCatregoriesAPIs?.map((item) => console.log(item.books));
   console.log(allCatregoriesAPIs);
 
   const { data, isError, isLoading } = useBooks();
   const allBooks = data;
+  console.log(allBooks);
+
+  const allBooksTwo = allCatregoriesAPIs?.flatMap((item) => {
+    return item.books;
+  });
 
   const [categoriesFilter, setCatergoriesFilter] = useState(null);
 
@@ -30,11 +37,13 @@ export default function Shop() {
     console.log(categoryById);
   };
 
-  const showToBooks = categoriesFilter ? categoriesFilter.books : allBooks;
+  const showToBooks = categoriesFilter ? categoriesFilter.books : allBooksTwo;
 
-  const filterSearch = showToBooks?.filter((book) => {
-    return book.title.toLowerCase().includes(search.toLowerCase());
-  });
+  const filterSearch = useMemo(() => {
+    return showToBooks?.filter((book) =>
+      book.title.toLowerCase().includes(search.toLowerCase()),
+    );
+  }, [showToBooks, search]);
 
   if (isLoading) {
     return (
