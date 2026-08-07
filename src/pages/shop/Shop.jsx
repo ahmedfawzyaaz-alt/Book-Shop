@@ -10,6 +10,11 @@ import { BeatLoader } from "react-spinners";
 import { useOutletContext } from "react-router";
 
 export default function Shop() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageOne = 30;
+  const lastBook = currentPage * pageOne; // 3 * 30 = 90
+  const firstBook = lastBook - pageOne; // 90 - 30 = 60
+
   const { allCategories, loading, error } = useCategories();
   const allCatregoriesAPIs = allCategories;
 
@@ -52,18 +57,76 @@ export default function Shop() {
       </div>
     );
   }
+
+  const currentLoop = categoriesFilter
+    ? filterSearch
+    : filterSearch?.slice(firstBook, lastBook);
+
   return (
-    <div className="grid grid-cols-12 my-3 px-5 gap-3">
-      <div className="col-span-12 md:col-span-6 lg:col-span-3">
-        <AccordionFilter
-          allCatregoriesAPIs={allCatregoriesAPIs}
-          handelFiltration={handelFiltration}
-          categoriesFilter={categoriesFilter}
-        />
+    <>
+      <div className="grid grid-cols-12 my-3 px-5 gap-3">
+        <div className="col-span-12 md:col-span-6 lg:col-span-3">
+          <AccordionFilter
+            allCatregoriesAPIs={allCatregoriesAPIs}
+            handelFiltration={handelFiltration}
+            categoriesFilter={categoriesFilter}
+          />
+        </div>
+        <div className="col-span-12 md:col-span-6 lg:col-span-9 min-h-screen">
+          <Books books={currentLoop} />
+        </div>
       </div>
-      <div className="col-span-12 md:col-span-6 lg:col-span-9 min-h-screen">
-        <Books books={filterSearch} />
+
+      {!categoriesFilter && (
+        <div className="md:flex gap-4 my-5 justify-center hidden">
+          <button
+            disabled={currentPage === 1}
+            className="py-2 px-4 bg-[#D9176C] text-white rounded"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Previous
+          </button>
+
+          {Array.from({ length: 10 }, (value, index) => (
+            <button
+              className={`py-2 px-3 rounded ${currentPage === index + 1 ? "bg-[#D9176C] text-white" : "bg-gray-300"}`}
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+
+          <button
+            disabled={currentPage === 10}
+            className="py-2 px-4 bg-[#D9176C] text-white rounded"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
+
+      <div className="flex items-center justify-center gap-2 my-4 md:hidden">
+        <button
+          disabled={currentPage === 1}
+          className="py-2 px-4 bg-[#D9176C] text-white rounded"
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Previous
+        </button>
+
+
+
+        <span className="text-2xl text-[#D9176C]">...{currentPage}...</span>
+
+        <button
+          disabled={currentPage === 10}
+          className="py-2 px-4 bg-[#D9176C] text-white rounded"
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </button>
       </div>
-    </div>
+    </>
   );
 }
