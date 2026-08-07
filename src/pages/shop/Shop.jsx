@@ -106,27 +106,27 @@ export default function Shop() {
         </div>
       )}
 
-      <div className="flex items-center justify-center gap-2 my-4 md:hidden">
-        <button
-          disabled={currentPage === 1}
-          className="py-2 px-4 bg-[#D9176C] text-white rounded"
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Previous
-        </button>
+      {!categoriesFilter && (
+        <div className="flex items-center justify-center gap-2 my-4 md:hidden">
+          <button
+            disabled={currentPage === 1}
+            className="py-2 px-4 bg-[#D9176C] text-white rounded"
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Previous
+          </button>
 
+          <span className="text-2xl text-[#D9176C]">...{currentPage}...</span>
 
-
-        <span className="text-2xl text-[#D9176C]">...{currentPage}...</span>
-
-        <button
-          disabled={currentPage === 10}
-          className="py-2 px-4 bg-[#D9176C] text-white rounded"
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
-      </div>
+          <button
+            disabled={currentPage === 10}
+            className="py-2 px-4 bg-[#D9176C] text-white rounded"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </>
   );
 }
